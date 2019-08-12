@@ -14,15 +14,17 @@ The GITHUB makes sharing and learning one of the fastest as you can get to see h
 
 # Basic VIDEO Analysis using YOLOv3 with Tensorflow v2.0
 
-**Background**  I chose Personal Mobile Devices PMDs as this is specific to Singapore. There are lots of situation where PMDs are causing accidents around Singapore and enforcement is bad.  So, if anyone can use their mobile phones to capture videos and PMDs are recognised, and if SPEED can be recorded etc, then it can come in very useful.  So in the decomposition of things to do, there are many elements of this "goal/project" -
+**Background**  
+
+I chose Personal Mobile Devices PMDs as this is specific to Singapore. There are lots of situation where PMDs are causing accidents around Singapore and enforcement is bad.  So, if anyone can use their mobile phones to capture videos and PMDs are recognised, and if SPEED can be recorded etc, then it can come in very useful.  So in the decomposition of things to do, there are many elements of this "goal/project" -
 
 Recognise with acceptable processing speed (fps) and identify a PMD
 Calculate the SPEED of the PMD, perhaps to even analyse the picture to extract out the Registration NUMBER ( using OpenCV ?)
 Create this mobile APP ( Android and IPHONE ) to take the model and use it on the phone.
 
-In the real world, the EYE SURGEON while he/she is a SURGEON, he/she will not be able to operate on the HEART.  So, you have to have Andriod Studio MOBILE development (JAVA) skills, IPHONE XCODE (SWIFT) skills, UBUNTU Python and Tensorflow skills.  And move around these boxes without SPENDING A BOMB and taking 10 years. 
+In our real world, the EYE SURGEON while he/she is a SURGEON, he/she will not be able to operate on the HEART. Specialisation takes 10,000 hours.  And we don't have that long and the patience.  So, you have to have Andriod Studio MOBILE development (JAVA) skills, IPHONE XCODE (SWIFT) skills - Tried FLUTTER which allowed me to deploy a TF model on both IPHONE and ANDRIOD, UBUNTU Python and Tensorflow skills.  And move around these boxes without SPENDING A BOMB (tried VirtualBOX and installed MacOS Mojave and XCODE but cannot get my iPHONE detected as a device to deploy) and taking 10 years. 
 
-So PART 1 must happen 1st - RAW tensorflow YOLOv3 analysis ( before training )
+So PART 1 must happen 1st - **RAW tensorflow YOLOv3 analysis ( before training )
 
 Here's the video of the analysis of a Straits Times video that I captured
 
