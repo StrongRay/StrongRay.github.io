@@ -26,7 +26,7 @@ In our real world, an EYE SURGEON, while he/she is a SURGEON, he/she will not be
 
 A secondary objective is to stay mentally alert and on a learning mode.  As **internalisation** takes place only with trial and errors.
 
-So PART 1 must happen 1st - **RAW tensorflow YOLOv3 analysis ( before training )
+So **PART 1** must happen 1st - **RAW tensorflow YOLOv3 analysis ( before training )
 
 Here's the video of the analysis of a Straits Times video that I captured
 
@@ -34,14 +34,9 @@ Here's the video of the analysis of a Straits Times video that I captured
 
 I will update this page with more findings as I not only code but must present the ideas in a laymanish way as easy as possible.
 
-### Small image
+### Stay Tuned for my updates
 
 ![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
 
 ### Acronymns 
 
