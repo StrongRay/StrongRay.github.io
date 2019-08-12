@@ -1,6 +1,6 @@
 ---
 layout: default
-youtubeId: fdbIGdoM-rE
+youtubeId: 0SFDhEOsj78
 ---
 
 This is STRONGRAY PAGE ...
