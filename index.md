@@ -53,7 +53,7 @@ VOLT has a nice option of exporting as TFrecords.  After the labelling and gener
 
 ![Training](https://github.com/StrongRay/StrongRay.github.io/blob/master/assets/images/Training.jpg)
 
-Training did not take long.  And while the accuracy is not perfect, I think as an initial step, this looks promising.  I will then try generating a tflite version of the weights file for imbedding into FLUTTER (Andriod/IOS)  This step will be most challenging. 
+Training did not take TOO long.  And while this initial accuracy is not perfect, I think as an initial step and as a process, this looks promising.  I will then try generating a tflite version of the weights file for imbedding into FLUTTER (Andriod/IOS)  This step will be most challenging. 
 
 ### Stay Tuned for my next updates
 
