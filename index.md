@@ -43,7 +43,7 @@ After a hard day's work of meddling around with TF records, I did a Transfer Tra
 
 There are a few steps involved in training.  One is, of course, getting the images. Here, I went to the web and download as many images that I can search regarding PMDs.  Here's a list of them
 
-![Dataset](/images/DATA.jpg)
+![Dataset](images/DATA.jpg)
 
 They come in various quality and sizes.  And I sourced for some 74 images.  The next step involved trial and error.  Initally, I used LabelImg on Ubuntu but then, it needed to generate TFrecords. The TFrecords program works from contrib in TF 1.3/1.4 and I am already on tf2.0.  Instead, I went to my Windows 10 enviroment and downloaded VOLT.
 
