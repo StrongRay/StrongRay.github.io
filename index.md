@@ -1,6 +1,7 @@
 ---
 layout: default
 youtubeId: 0SFDhEOsj78
+youtubeId2: 7F1HZAJaeSM
 ---
 One of the more visible Artificial Intelligence explorations is in the area of Computer Vision.  In this area, the applications are aplenty including Automonous Vehile driving, X-ray analysis of tumors, etc.  Specifically in Computer Vision Analysis [**YOLOv3 You Only Look Once**](https://pjreddie.com/darknet/yolo) is about the fastest opensource with the use of tensorflow training. [**Tensorflow**](https://www.tensorflow.org) is by GOOGLE and openly available.  As of August 2019, it is in version 2.0B  The concept of using **tensorflow** is to use it to define the CNN model and train it against a set of labelled datasets so that subsequent programs can be used to predict with a certain amount of _accuracy_ Using tensorflow framework, one normally define the steps using [**python**](https://www.python.org/)
 
@@ -36,8 +37,7 @@ After a hard day's work of meddling around with TF records, I did a Transfer Tra
 
 **PART 2 - after training, ran the video with the processing**
 
-{% include youtubePlayer.html id=7F1HZAJaeSM %}
-
+{% include youtubePlayer.html id=page.youtubeId2 %}
 
 ### Stay Tuned for my updates
 
