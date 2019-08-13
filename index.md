@@ -32,7 +32,12 @@ Here's the video of the analysis of a Straits Times video that I captured
 
 {% include youtubePlayer.html id=page.youtubeId %}
 
-I will update this page with more findings as I not only code but must present the ideas in a laymanish way as easy as possible.
+After a hard day's work of meddling around with TF records, I did a Transfer Training on YOLOv3 using Tensorflow 2.0 on my Ubuntu 19.04.
+
+**PART 2 - after training, ran the video with the processing**
+
+{% include youtubePlayer.html id=7F1HZAJaeSM}
+
 
 ### Stay Tuned for my updates
 
