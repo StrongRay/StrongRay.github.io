@@ -43,15 +43,15 @@ After a hard day's work of meddling around with TF records, I did a Transfer Tra
 
 There are a few steps involved in training.  One is, of course, getting the images. Here, I went to the web and download as many images that I can search regarding PMDs.  Here's a list of them
 
-![Dataset](https://github.com/StrongRay/StrongRay.github.io/blob/master/assets/images/dataset.png)
+![Dataset](/images/dataset.png)
 
 They come in various quality and sizes.  And I sourced for some 74 images.  The next step involved trial and error.  Initally, I used LabelImg on Ubuntu but then, it needed to generate TFrecords. The TFrecords program works from contrib in TF 1.3/1.4 and I am already on tf2.0.  Instead, I went to my Windows 10 enviroment and downloaded VOLT.
 
-![Volt](assets/images/VOIT.jpg)
+![Volt](/images/VOIT.jpg)
 
 VOLT has a nice option of exporting as TFrecords.  After the labelling and generating of tfrecords, the next step is to do the training.  The script for training has a few Quarks.  I nearly gave up.  This is when you start looking around the issues reported and I went in to change the train.py script.
 
-![Training](https://github.com/StrongRay/StrongRay.github.io/blob/master/assets/images/Training.jpg)
+![Training](/images/Training.jpg)
 
 Training did not take TOO long.  And while this initial accuracy is not perfect, I think as an initial step and as a process, this looks promising.  I will then try generating a tflite version of the weights file for imbedding into FLUTTER (Andriod/IOS)  This step will be most challenging. 
 
