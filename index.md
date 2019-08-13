@@ -36,7 +36,7 @@ After a hard day's work of meddling around with TF records, I did a Transfer Tra
 
 **PART 2 - after training, ran the video with the processing**
 
-{% include youtubePlayer.html id=7F1HZAJaeSM}
+{% include youtubePlayer.html id=7F1HZAJaeSM %}
 
 
 ### Stay Tuned for my updates
