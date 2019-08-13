@@ -7,7 +7,9 @@ One of the more visible Artificial Intelligence explorations is in the area of C
 
 There is no way to dive into each topic as one can really go DEEPLY into deeplearning and some will even say you need to be good at mathematics, linear Algebra etc.  There is no end to all the learning one can do.  But as **Confucious** says 
 
-> I hear and I forget. I see and I remember. I do and I understand
+> I hear and I forget. I see and I remember. I **do** and I understand
+
+![Confucious](https://images.squarespace-cdn.com/content/v1/5b75ac0285ede1b470f58ae2/1552088225978-9XEWSHS4194OKJHGN1NT/ke17ZwdGBToddI8pDm48kNw2TxbujJdl1BY0ObYEVqFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIxNSqkGYWRfQ32Ht0-atPWoWydOhR6u9hVXQnrilM_0IKMshLAGzx4R3EDFOm1kBS/IMG_6154.JPG?format=1000w)
 
 Additionally, IMHO, one should use [**UBUNTU**](https://ubuntu.com/) as the operating system to run these codes rather than WINDOWS 10 or a MAC.  And very soon, you will realise that you will need to know unix commands and learn about leveraging CUDAs and GPU from NVIDIA.  Each letter is yet another topic all by itself.  So, its actually very daunting to learn all these and at the same time, there are many **moving parts** such as version changes of the software packages.  Hence, [**GITHUB**](https://github.com/) is used as a repository of explorations by other like minded coders who willingly share their codes.  And one might end up BUILDING from SOURCE which might take an overnight run of the build if one wants a specific combination of OPENCV, CUDA and Tensorflow.  
 
@@ -39,7 +41,21 @@ After a hard day's work of meddling around with TF records, I did a Transfer Tra
 
 {% include youtubePlayer.html id=page.youtubeId2 %}
 
-### Stay Tuned for my updates
+There are a few steps involved in training.  One is, of course, getting the images. Here, I went to the web and download as many images that I can search regarding PMDs.  Here's a list of them
+
+![Dataset](https://github.com/StrongRay/StrongRay.github.io/blob/master/assets/images/dataset.png)
+
+They come in various quality and sizes.  And I sourced for some 74 images.  The next step involved trial and error.  Initally, I used LabelImg on Ubuntu but then, it needed to generate TFrecords. The TFrecords program works from contrib in TF 1.3/1.4 and I am already on tf2.0.  Instead, I went to my Windows 10 enviroment and downloaded VOLT.
+
+![Volt](https://github.com/StrongRay/StrongRay.github.io/blob/master/assets/images/VOIT.jpg)
+
+VOLT has a nice option of exporting as TFrecords.  After the labelling and generating of tfrecords, the next step is to do the training.  The script for training has a few Quarks.  I nearly gave up.  This is when you start looking around the issues reported and I went in to change the train.py script.
+
+![Training](https://github.com/StrongRay/StrongRay.github.io/blob/master/assets/images/Training.jpg)
+
+Training did not take long.  And while the accuracy is not perfect, I think as an initial step, this looks promising.  I will then try generating a tflite version of the weights file for imbedding into FLUTTER (Andriod/IOS)  This step will be most challenging. 
+
+### Stay Tuned for my next updates
 
 ![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
 
