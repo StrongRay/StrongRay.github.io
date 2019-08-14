@@ -37,8 +37,6 @@ After a hard day's work of meddling around with TF records, I did a Transfer Tra
 
 **PART 2 - after training, ran the video with the processing**
 
-{% include youtubePlayer.html id=page.youtubeId2 %}
-
 There are a few steps involved in training.  One is, of course, getting the images. Here, I went to the web and download as many images that I can search regarding PMDs.  Here's a list of them
 
 ![Dataset](/assets/images/DATA.jpg)
@@ -51,9 +49,13 @@ VOLT has a nice option of exporting as TFrecords.  After the labelling and gener
 
 ![Training](/assets/images/TRAIN.jpg)
 
-Training did not take TOO long.  And while this initial accuracy is not perfect, I think as an initial step and as a process, this looks promising.  I will then try generating a tflite version of the weights file for imbedding into FLUTTER (Andriod/IOS)  This step will be most challenging. 
+Training did not take TOO long.  And while this initial accuracy is not perfect, I think as an initial step and as a process, this looks promising.  I will then try generating a tflite version of the weights file for imbedding into FLUTTER (Andriod/IOS)  This step will be most challenging. Here's the processed video
 
-### Stay Tuned for my next updates
+{% include youtubePlayer.html id=page.youtubeId2 %}
+
+The next move to generate TF Lite records is challenging as Tensorflow 2.0 BETA have not fully migrated the tools to convert the weights to TFLite.  Hence, instead of spending time to delve into moving back to TF1.14, I decided to show my next toy - The NVIDIA JETSON NANO DEVELOPER KIT - much like a PI but with GPUs =) And not like Intel Movidus which sticks out like a sorethumb =)
+
+### Stay Tuned for my next updates on JETSON NANO
 
 ![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
 
