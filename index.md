@@ -9,7 +9,7 @@ There is no way to dive into each topic as one can really go DEEPLY into deeplea
 
 > I hear and I forget. I see and I remember. I **do** and I understand
 
-![Confucious](https://images.squarespace-cdn.com/content/v1/5b75ac0285ede1b470f58ae2/1552088225978-9XEWSHS4194OKJHGN1NT/ke17ZwdGBToddI8pDm48kNw2TxbujJdl1BY0ObYEVqFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIxNSqkGYWRfQ32Ht0-atPWoWydOhR6u9hVXQnrilM_0IKMshLAGzx4R3EDFOm1kBS/IMG_6154.JPG?format=1000w)
+![Confucious](/assets/images/Confucious.jpg)
 
 Additionally, IMHO, one should use [**UBUNTU**](https://ubuntu.com/) as the operating system to run these codes rather than WINDOWS 10 or a MAC.  And very soon, you will realise that you will need to know unix commands and learn about leveraging CUDAs and GPU from NVIDIA.  Each letter is yet another topic all by itself.  So, its actually very daunting to learn all these and at the same time, there are many **moving parts** such as version changes of the software packages.  Hence, [**GITHUB**](https://github.com/) is used as a repository of explorations by other like minded coders who willingly share their codes.  And one might end up BUILDING from SOURCE which might take an overnight run of the build if one wants a specific combination of OPENCV, CUDA and Tensorflow.  
 
