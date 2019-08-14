@@ -7,8 +7,6 @@ One of the more visible Artificial Intelligence explorations is in the area of C
 
 There is no way to dive into each topic as one can really go DEEPLY into deeplearning and some will even say you need to be good at mathematics, linear Algebra etc.  There is no end to all the learning one can do.  But as **Confucious** says 
 
-> I hear and I forget. I see and I remember. I **do** and I understand
-
 ![Confucious](/assets/images/Confucious.jpg)
 
 Additionally, IMHO, one should use [**UBUNTU**](https://ubuntu.com/) as the operating system to run these codes rather than WINDOWS 10 or a MAC.  And very soon, you will realise that you will need to know unix commands and learn about leveraging CUDAs and GPU from NVIDIA.  Each letter is yet another topic all by itself.  So, its actually very daunting to learn all these and at the same time, there are many **moving parts** such as version changes of the software packages.  Hence, [**GITHUB**](https://github.com/) is used as a repository of explorations by other like minded coders who willingly share their codes.  And one might end up BUILDING from SOURCE which might take an overnight run of the build if one wants a specific combination of OPENCV, CUDA and Tensorflow.  
