@@ -45,7 +45,7 @@ They come in various quality and sizes.  And I sourced for some 74 images.  The 
 
 ![Volt](/assets/images/VOIT.jpg)
 
-VOLT has a nice option of exporting as TFrecords.  After the labelling and generating of tfrecords, the next step is to do the training.  The script for training has a few Quarks.  I nearly gave up.  This is when you start looking around the issues reported and I went in to change the train.py script.
+VOTT has a nice option of exporting as TFrecords.  After the labelling and generating of tfrecords, the next step is to do the training.  The script for training has a few Quarks.  I nearly gave up.  This is when you start looking around the issues reported and I went in to change the train.py script.
 
 ![Training](/assets/images/TRAIN.jpg)
 
