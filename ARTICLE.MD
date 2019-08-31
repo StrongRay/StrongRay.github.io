@@ -1,7 +1,5 @@
 ---
 layout: default
-youtubeId: UXStERpkuQo
-youtubeId2: DcA5VkTIP4s
 ---
 # Custom Object Detection
 
@@ -61,4 +59,5 @@ Repeatable success can only be achieved through disciplined approach. Whether it
 
 The following is the processed video
 
-{% include youtubePlayer.html id=page.youtubeId %}
+{% include youtube.html id=UXStERpkuQo %}
+{% include youtubePlayer.html id=UXStERpkuQo %}
