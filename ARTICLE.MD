@@ -61,4 +61,4 @@ Repeatable success can only be achieved through disciplined approach. Whether it
 
 The following is the processed video
 
-{% include youtubePlayer.html id=page.youtubeId2 %}
+{% include youtubePlayer.html id=page.youtubeId %}
