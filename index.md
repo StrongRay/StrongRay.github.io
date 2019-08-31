@@ -58,8 +58,3 @@ Repeatable success can only be achieved through disciplined approach. Whether it
 ![Prediction](/assets/images/s1.png)
 
 The following is the processed video
-
-{% include youtube.html id=UXStERpkuQo %} 
-```
-The final element.
-```
