@@ -1,6 +1,8 @@
 # HOW YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
 
-Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 fps frame per second is totally useless in the real world, neither is 15 fps good enough.  I wanted to see if I can do some custom deep learning to “program” a model to recognize objects.  Obviously, there is no thrill in doing what every course out there is doing -  “Cats and Dogs” thing or “Types of Flowers” 
+Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 fps frame per second is totally useless in the real world, neither is 15 fps good enough.  So, speed and accuracy are both important parameters in the real world. 
+
+I wanted to see if I can do some custom deep learning to “program” a model to recognize an object.  Obviously, there is no thrill in doing what every course out there is doing -  “Cats and Dogs” thing or “Types of Flowers” thing.
 
 Having just attended [SGINNOVATE](https://sginnovate.com/events/AI) Red Dragon’s Advanced Computer Vision course at BASH BLK 71 last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
 
