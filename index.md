@@ -33,7 +33,7 @@ By sheer randomness, I decided on 74 images after discarding some.  By reading u
 
 You only Look Once [YOLO](https://pjreddie.com/media/files/papers/YOLOv3.pdf) is a nice and fast model for detecting images and developed by Joseph Redmon and Ali Frahadi of University of Washington.  Mathematics aside, there are many implementations from C to Python (Tensorflow) and Pytorch.  I chose [AlexyAB Darknet fork](https://github.com/AlexeyAB/darknet) which provided an upgraded version from PKREDDIE.   
 
-So, the GIST is the concept of Transfer Learning.  Select a trained weights from one of the model and then use it to train your dataset.  So, this is supposedly better and faster than training from scratch.  The codes FREEZE up the earlier Convoluted Neural Networks (CNN) layers and let the later layers open for data propogation and back propogation.  
+So, the GIST is the concept of [Transfer Learning](https://machinelearningmastery.com/transfer-learning-for-deep-learning/).  Select a trained weights from one of the model and then use it to train your dataset.  So, this is supposedly better and faster than training from scratch.  The codes FREEZE up the earlier Convoluted Neural Networks (CNN) layers and let the later layers open for data propogation and back propogation.  
 
 After starting with darknet 53 weights and then moved to Yolov3 Tiny. Reason being, the footprint of a Yolov3 Tiny is the smallest and hence, it should technically be training faster but perhaps less accurate as it is less complex than the full Yolov3.  
 
