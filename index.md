@@ -1,6 +1,3 @@
----
-layout: default
----
 # Custom Object Detection
 
 Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 frame per second is totally useless in the real world.  I wanted to see if I can do some custom deep learning to “program” a model to recognize objects.  Obviously, there is no thrill in doing the “Cats and Dogs” thing or “Types of Flowers” 
@@ -16,7 +13,11 @@ So, would l need a couple of hundreds or at least a thousand images for custom t
 
 I selected images from google search and selected clear in perspective PMDs.  However, my scope did not include e-scooters nor MONO-wheel type of PMDs.  I realized after the training, some scenes are detected with PMD but as they fade further away, the bounding boxes disappear.  This implies that the collection of images could be further enhanced by perhaps taking a video and extracting out zooming out frames of a PMD in motion.  
 
-Labelling is a simple but tedious job, but there are many tools available to help.  The one I chose was VOTT.  Perhaps in future, such a tool can take a video and try to auto generate bounding boxes if we predefine the object on one frame.  Still, the idea is not about being perfect, but to take this through end to end.  
+Labelling is a simple but tedious job, but there are many tools available to help.  The one I chose was VOTT.  
+
+![Image File](/assets/images/VOIT.jpg)
+
+Perhaps in future, such a tool can take a video and try to auto generate bounding boxes if we predefine the object on one frame.  Still, the idea is not about being perfect, but to take this through end to end.  
 
 By sheer randomness, I decided on 74 images after discarding some.  By reading up on some posts, some say they need 400 images or even a thousand.  So the hypothesis is “Can a custom object model be created based on 74 images ?” And how accurate is enough ?  From a zero detection to possibly some detection is a good start. 
  
@@ -43,6 +44,14 @@ BATCH is about the number of “rounds” the training will run through x number
 
 200 is what I originally tried.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, the loss is in the 2-3000s.  Ie. If you take the weights and predict an image, chances are you predict nothing =)
 Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen.  
+
+![Graph-1](/assets/images/BatchNo-Loss-2.jpg) ![Graph-2](/assets/images/BatchNo-Loss-3.jpg) 
+
+Here's the difference between the 2 weights file, one trained till 1000 batches and the other till 2000 batches
+There are slight differences, but note the one with 2000 will detect abit more images.  Those not detected will still be true for both as the dataset doesn't include PMDs of those models.
+
+{% include youtubePlayer.html id="DcA5VkTIP4s" %}
+
 Before you go about training endlessly, there is a concept called **UNDERFITTING** and **OVERFITTING** in training.  
 
 **Underfitting** happens when your trained model CANNOT detect anything that you want to detect, ie. The weights are not adjusted in each CNN layer such that they can sieve out the features.  Likely, the training batches and/or data has a problem.   **Overfitting** is the term used to describe a model that can only detect those from the training and validation dataset.  In other words, if the image shown is NOT one of the image from the training and validation dataset, there will be no detection.  
