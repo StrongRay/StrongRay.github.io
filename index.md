@@ -53,7 +53,7 @@ Defining **BATCHes** is like the number of "loops" the training will run through
 
 I originally tried only 200 batches.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, its useless ! Ie. If you take the model and predict an image, chances are you predict nothing =) and in the past I wondered WHY.
 
-Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen.  
+Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  
 
 ![Graph-1](/assets/images/BatchNo-Loss-2.jpg) 
 
