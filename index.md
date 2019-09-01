@@ -35,21 +35,24 @@ You only Look Once [YOLO](https://pjreddie.com/media/files/papers/YOLOv3.pdf) is
 
 So, the GIST is the concept of [Transfer Learning](https://machinelearningmastery.com/transfer-learning-for-deep-learning/).  Select a trained weights from one of the model and then use it to train your dataset.  So, this is supposedly better and faster than training from scratch.  The codes FREEZE up the earlier Convoluted Neural Networks (CNN) layers and let the later layers open for data propogation and back propogation.  
 
-After starting with darknet 53 weights and then moved to Yolov3 Tiny. Reason being, the footprint of a Yolov3 Tiny is the smallest and hence, it should technically be training faster but perhaps less accurate as it is less complex than the full Yolov3.  
+I started with "darknet 53" pre trained weights and then moved on to "Yolov3 Tiny".  Reason being, the footprint of a Yolov3 Tiny is the smallest and hence, it should technically be faster to train but perhaps less accurate as it is less complex than the full Yolov3.  
 
 ## It’s all about Hyper parameters tuning 
 
-Hyper parameter is like META DATA to DATA - Data about Data.  Hyper parameter sounds more high class and mystical.  So the control of training needs to read off a CONFIGURATION FILE and this CONFIGURATION file contains parameters that one can easily tune, instead of hard coding into the program to change, say the number of batches.
+Hyper parameter is like META DATA to DATA - Data about Data.  Hyper parameter sounds more classier and mystical. So, it's one of basic 101 questions you can ask an AI engineer/developer/scientist, explain what is Hyper Parameter and Transfer Learning =) 
 
-“Programming” in DEEP LEARNING is nothing more than fine tuning the “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, **DATA AUGMENTATION** is a concept where the image data can being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images increases from the base set of 74 that I have collected and labelled. 
+So the control of training needs to read off a CONFIGURATION FILE and this CONFIGURATION file contains parameters that one can easily tune, instead of hard coding into the program to change, for example - the number of batches.
 
-“Setting up” the data directory, ie. Where to place the config files and data images and labels require a one time definition.  The fastest way is to get one model right and then you can build on the same model.  For me, it’s finding a ONE CLASS object detection layout as a foundation.
+“Programming” in DEEP LEARNING is nothing more than fine tuning the “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, **DATA AUGMENTATION** is a concept where the image data can being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images will increases from the base set of 74 that you have collected and labelled. This AUTO labelling is what makes life simpler.  Once the prediction is done, the other mundane non-AI stuff can come in like to store these photo segments, additional analysis using OpenCV or other application specific stuff like inserting into a database etc. 
+
+“Setting up” the data directory structure is the next important thing.  Those developers whoose desktop looked like 100s of ICONS will die (metaphorically speaking) here.  Reason being, discipline in knowing where to put what gives you a reflection of "self discipline".  Where to place the config files and data images and labels require a one time definition.  The fastest way is to get one model right and then you can build on the same model.  For me, it’s finding that ONE CLASS object detection repro as a foundation.
  
 BTW:  It would be great to have ZOOM in and OUT but this is not provided for. Either we go into the C codes to modify and add on this feature or expand the data collection part so that we expand the datasets.  
 
 Defining **BATCHes** is like the number of "loops" the training will run through x number of images.  In the past, given the time in class or at home, I would think 100 is more than sufficient.  But there is NO detection =)  This leads to a very important concept of “ART vs SCIENCE” in Machine Learning.  Those who don’t see GRAPHs, will tell you it’s ART and a trial and error.  But machines and computers are not emotional or sensitive objects.  They work based on an algorithm.  Here after reading, you will see Average LOSS for each batch,  
 
-I originally tried only 200 batches.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, the loss is in the 2-3000s.  Ie. If you take the weights and predict an image, chances are you predict nothing =)
+I originally tried only 200 batches.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, its useless ! Ie. If you take the model and predict an image, chances are you predict nothing =) and in the past I wondered WHY.
+
 Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen.  
 
 ![Graph-1](/assets/images/BatchNo-Loss-2.jpg) 
@@ -93,9 +96,7 @@ Attending the SGINNOVATE Red Dragon's course forced me to learn how to use this.
 
 ## Everything in life is about the results ( while you are tricked into thinking it’s the process that matters, it's like saying to your boss, I worked very hard but no sales )
 
-<div class="alert alert-block alert-danger">
-Repeatable success can only be achieved through discipline
-</div>
+**Repeatable success is achievable only through discipline**
 
 Whether it's coding or Data Science.  The keeping of a LOGbook and “Documenting your code” in a jupyter notebook helps remind yourself 3 months after you come back.  Here’s a code sniplet of the notebook showing an image predict on s25.jpg.  A high level of confidence shows that the recognition is perhaps more sure.  Adding a THRESH variable can make the system ignore any prediction less than 0.x% 
 
@@ -103,3 +104,5 @@ Whether it's coding or Data Science.  The keeping of a LOGbook and “Documentin
 
 The following is the processed video
 {% include youtubePlayer.html id="UXStERpkuQo" %}
+
+I hope you enjoyed my article. Do give me feedback to correct my perspectives. It's always good to learn, unlearn and relearn.
