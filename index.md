@@ -1,7 +1,7 @@
 # Custom Object Detection
 
 Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 frame per second is totally useless in the real world.  I wanted to see if I can do some custom deep learning to “program” a model to recognize objects.  Obviously, there is no thrill in doing the “Cats and Dogs” thing or “Types of Flowers” 
-Having just attended [SGINNOVATE][https://sginnovate.com/events/AI] Red Dragon’s Advanced Computer Vision course at BASH last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
+Having just attended [SGINNOVATE](https://sginnovate.com/events/AI) Red Dragon’s Advanced Computer Vision course at BASH last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
 So, would l need a couple of hundreds or at least a thousand images for custom training ? So the key questions for the exploration are as follows
 
 1.	Can a custom object be detected using 74 labelled images ?
@@ -25,7 +25,7 @@ By sheer randomness, I decided on 74 images after discarding some.  By reading u
 
 ## Yolo-ing around
 
-You only Look Once (YOLO) is a nice and fast model for detecting images and developed by Joseph Redmon and Ali Frahadi of University of Washington.  https://pjreddie.com/media/files/papers/YOLOv3.pdf  Mathematics aside, there are many implementations from C to Python (Tensorflow) and Pytorch.  I chose the “https://github.com/AlexeyAB/darknet” fork which provided an upgraded version from PKREDDIE.   
+You only Look Once [YOLO](https://pjreddie.com/media/files/papers/YOLOv3.pdf) is a nice and fast model for detecting images and developed by Joseph Redmon and Ali Frahadi of University of Washington.  Mathematics aside, there are many implementations from C to Python (Tensorflow) and Pytorch.  I chose (https://github.com/AlexeyAB/darknet) fork which provided an upgraded version from PKREDDIE.   
 So, the GIST is the concept of Transfer Learning.  Select a trained weights from one of the model and then use it to train your dataset.  So, this is supposedly better and faster than training from scratch.  The codes FREEZE up the earlier Convoluted Neural Networks (CNN) layers and let the later layers open for data propogation and back propogation.  
 
 After starting with darknet 53 weights and then moved to Yolov3 Tiny. Reason being, the footprint of a Yolov3 Tiny is the smallest and hence, it should technically be training faster but perhaps less accurate as it is less complex than the full Yolov3.  
