@@ -82,7 +82,7 @@ The ability of Machine Learning model to predict something other than what it is
 
 To recap, Training is letting the software adjust the weights of the CNN model through batches of passing through labelled images so that after many rounds, the CNN model has a nicely setup weights on each layer such that if you feed it a new image, it can tell if it detects the object or not.  In my last training, I ran off my 4 CPU laptop, started at 9 pm and it ended at 2 am.  So, if the system crashed, you come back and restart the training cycle.  The moment of truth comes only when you pass this “pre-trained” weights with predicting a new image.
 
-This brings to the next IMPORTANT topic called （**COLAB**）[https://colab.research.google.com/] and your GOOGLE DRIVE.  
+This brings to the next IMPORTANT topic called [COLAB](https://colab.research.google.com/) and your GOOGLE DRIVE.  
 
 ![colab](/assets/images/colab.jpg) 
 
@@ -94,7 +94,7 @@ So, learning how to use/exploit GOOGLE COLAB is very useful.  But there is no fr
 
 BUT, **NOT** everything on AI is PYTHON. 
 
-Colab is the (Jupyter)[https://jupyter.org/] Notebook frontend to an UBUNTU environment on the Google cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  So, an understanding of how to move around, mount your google drive and get the notebook running is important.   Otherwise, everything is lost after you log off as the session data is not saved.  
+Colab is the [Jupyter](https://jupyter.org/) Notebook frontend to an UBUNTU environment on the Google cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  So, an understanding of how to move around, mount your google drive and get the notebook running is important.   Otherwise, everything is lost after you log off as the session data is not saved.  
 
 The quick summary is that I set up the codes on my laptop UBUNTU 19.04 environment, ZIP up the files and upload to my GOOGLE drive, then start a COLAB session, mount my google drive to “!unzip” the file in a jupyter Notebook. The work with the session.  The next time I come back in to train on another day, all these setup is done rather than a reinstall of the software each session.
 
