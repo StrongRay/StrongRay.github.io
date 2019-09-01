@@ -74,25 +74,27 @@ Before you go about training endlessly, there is a Deep Learning concept called 
 
 **Underfitting** happens when after you trained your model, your model still **CANNOT** detect anything that you want to detect, ie. The weights are not adjusted in each CNN layer such that they can identify any the features.  Likely, the training batches is too little and/or the selected images are not varied enough.   **Overfitting** is the other extreme - the model can **ONLY** detect those from the training and validation dataset and no detection for any other images that the model has never seen before.  Both models are quite useless.  The best model is to train until underfitting is the least and at the inflexion point before it becomes overfitted.  
 
-Below is an image from a VIDEO (mp4) that I sourced from Straits Times as a source of frames that I did not expose the model to train for.  This is where the **MAGIC of Deep Learning** begins.  
+This is where the **MAGIC of Deep Learning** begins.  
 
-The ability of Machine Learning model to predict something other than what it is trained for.  This is also termed as **SUPERVISED** Learning.  The Supervision comes from a human (me) associating images with bounding boxes and labelling them to TELL the computer to recognize the item as in this case, a PMD.    Without this “supervision”, how will the computer ever know what you mean by a PMD.  There is also UNSUPERVISED learning which is another story all together.  But unlike pure programming, where you do matching of images, the automatic weights adjustment is done for you back and forth.  Which also means that DEBUGGING process is quite difficult.  You have to play around and understand the basis of how such programs work and learn to tune it such that it picks the best strategy to give you the greatest accuracy.  The transportable skills here is in knowing why certain images are not recognised and being able to explain.  Only when one can explain, can only tune the model or collect more data images to compliment the model.  With ONE BIG ASSUMPTION - that the people in GOOGLE tensorflow or any model got their internal codes correct, much like if 1+1 is not = 2 at the Microsoft OS level, surely no amount of Application software can get this right.
+The ability of Machine Learning model to predict something other than what it is trained for.  This is also termed as **SUPERVISED** Learning.  The Supervision comes from a human (me) associating images with bounding boxes and labelling them to TELL the computer to recognize the item as in this case, a PMD.    Without this “supervision”, how will the computer ever know what you mean by a PMD.  There is also UNSUPERVISED learning which is another story all together.  But unlike pure programming, where you do matching of images, the automatic weights adjustment is done for you back and forth.  Which also means that DEBUGGING process is quite difficult.  You have to play around and understand the basis of how such programs work and learn to tune it such that it picks the best strategy to give you the greatest accuracy.  The transportable skills here is in knowing why certain images are not recognised and being able to explain.  Only when one can explain, can only tune the model or collect more data images to compliment the model.  With **ONE BIG ASSUMPTION** - that the people at GOOGLE BRAIN, tensorflow development got their internal codes correct, much like if 1+1 is not = 2 at the Microsoft OS level, surely no amount of Application software can get this right.
 
 **WHERE** DO YOU WANT this training to happen?
 
 To recap, Training is letting the software adjust the weights of the CNN model through batches of passing through labelled images so that after many rounds, the CNN model has a nicely setup weights on each layer such that if you feed it a new image, it can tell if it detects the object or not.  In my last training, I ran off my 4 CPU laptop, started at 9 pm and it ended at 2 am.  So, if the system crashed, you come back and restart the training cycle.  The moment of truth comes only when you pass this “pre-trained” weights with predicting a new image.
 
-This brings to the next IMPORTANT topic called [**GOOGLE COLAB**][https://colab.research.google.com/] and your GOOGLE DRIVE.  
+This brings to the next IMPORTANT topic called （**COLAB**）[https://colab.research.google.com/] and your GOOGLE DRIVE.  
 
 ![colab](/assets/images/colab.jpg) 
 
 Google has graciously given everyone “free” CPU/GPU/TPU for training, provided you know how to use them.  The lowest speed is Computer Processing Unit (CPU), followed by Graphical Processing Unit (GPU) and finally the top in class is the Tensor Processing Unit (TPU).  GPU started from Graphics cards used in gaming for rendering, a famous vendor being NVIDIA, and they in turn found another use of GPU in the AI world. TPU are specific to Google COLAB and the Google CLOUD computing.  Actually, I did not use TPU here but TPU can be activated via a few lines of codes when training Tensorflow using PYTHON.  
 
-Engineers who love software, but can’t typically do hardware and vice versa.  The gist of this is this – Training of these models require lots of Processing power and the more power you have ( that you need not pay for ) the quicker it is to have the work (training) done.  After you are done, release it back to the pool ( as spiderman says with power, comes responsibilty )
+Engineers who love software, but can’t typically do hardware and vice versa.  The gist of this is this – Training of these models require lots of Processing power and the more power you have ( that you need not pay for ) the quicker it is to have the work (training) done.  After you are done, release it back to the pool ( but as spiderman says "with power, comes great responsibilty" )
 
-So, learning how to use GOOGLE COLAB is very useful.  BUT, **NOT** everything on AI is PYTHON. 
+So, learning how to use/exploit GOOGLE COLAB is very useful.  But there is no free lunch. What is free is normally not so 100% reliable.  Once in awhile, you get disconnected and you just restart. Hopefully, you have checkpoints in betweens to carry on from where you left off.  Or hope that its so fast that before you get disconnected, all the work is done.
 
-Colab is an UBUNTU environment on the cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  So, an understanding of how to move around, mount your google drive and get the notebook running is important.   Otherwise, everything is lost after you log off as the session data is not saved.  
+BUT, **NOT** everything on AI is PYTHON. 
+
+Colab is the (Jupyter)[https://jupyter.org/] Notebook frontend to an UBUNTU environment on the Google cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  So, an understanding of how to move around, mount your google drive and get the notebook running is important.   Otherwise, everything is lost after you log off as the session data is not saved.  
 
 The quick summary is that I set up the codes on my laptop UBUNTU 19.04 environment, ZIP up the files and upload to my GOOGLE drive, then start a COLAB session, mount my google drive to “!unzip” the file in a jupyter Notebook. The work with the session.  The next time I come back in to train on another day, all these setup is done rather than a reinstall of the software each session.
 
@@ -102,7 +104,7 @@ Attending the SGINNOVATE Red Dragon's course forced me to learn how to use this.
 
 **Repeatable success is achievable only through discipline**
 
-Whether it's coding or Data Science.  The keeping of a LOGbook and “Documenting your code” in a jupyter notebook helps remind yourself 3 months after you come back.  Here’s a code sniplet of the notebook showing an image predict on s25.jpg.  A high level of confidence shows that the recognition is perhaps more sure.  Adding a THRESH variable can make the system ignore any prediction less than 0.x% 
+Whether it's coding or Data Science.  The keeping of a LOG book and “Documenting your code” in a jupyter notebook helps remind yourself 3 months after you come back.  Here’s a code sniplet of the notebook showing an image predict on s25.jpg.  A high level of confidence shows that the recognition is perhaps more sure.  Adding a THRESH variable can make the system ignore any prediction less than 0.x% 
 
 ![Prediction](/assets/images/s1.png)
 
