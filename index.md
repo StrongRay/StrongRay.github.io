@@ -1,8 +1,10 @@
-# Custom Object Detection
+# HOW YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
 
-Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 frame per second is totally useless in the real world.  I wanted to see if I can do some custom deep learning to “program” a model to recognize objects.  Obviously, there is no thrill in doing the “Cats and Dogs” thing or “Types of Flowers” 
-Having just attended [SGINNOVATE](https://sginnovate.com/events/AI) Red Dragon’s Advanced Computer Vision course at BASH last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
-So, would l need a couple of hundreds or at least a thousand images for custom training ? So the key questions for the exploration are as follows
+Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 fps frame per second is totally useless in the real world, neither is 15 fps good enough.  I wanted to see if I can do some custom deep learning to “program” a model to recognize objects.  Obviously, there is no thrill in doing what every course out there is doing -  “Cats and Dogs” thing or “Types of Flowers” 
+
+Having just attended [SGINNOVATE](https://sginnovate.com/events/AI) Red Dragon’s Advanced Computer Vision course at BASH BLK 71 last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
+
+So, do l really need a couple of hundreds or at least a thousand images for custom training ? So the key questions for the exploration are as follows -
 
 1.	Can a custom object be detected using 74 labelled images ?
 2.	How many training batches is sufficient ?
@@ -33,13 +35,15 @@ After starting with darknet 53 weights and then moved to Yolov3 Tiny. Reason bei
 
 ## It’s all about Hyper parameters tuning 
 
-“Setting up” the data directory, ie. Where to place the config files and data images and labels require a one time definition.  The fastest way is to get one model right and then you can build on the same model.  For me, it’s finding a ONE CLASS object detection layout.
+Hyper parameter is like META DATA to DATA - Data about Data.  Hyper parameter sounds more high class and mystical.  So the control of training needs to read off a CONFIGURATION FILE and this CONFIGURATION file contains parameters that one can easily tune, instead of hard coding into the program to change, say the number of batches.
 
-“Programming” is nothing more than fine tuning the “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, DATA AUGMENTATION is one where the image dataset is being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images increases from the base set of 74 that I have collected and labelled.  
+“Programming” in DEEP LEARNING is nothing more than fine tuning the “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, **DATA AUGMENTATION** is a concept where the image data can being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images increases from the base set of 74 that I have collected and labelled. 
 
-It would be great to have ZOOM in and OUT as another such **data augmentation**, but this is not provided for. Either we go into the C codes to modify and add on this feature or expand the data collection part so that we expand the datasets.  
+“Setting up” the data directory, ie. Where to place the config files and data images and labels require a one time definition.  The fastest way is to get one model right and then you can build on the same model.  For me, it’s finding a ONE CLASS object detection layout as a foundation.
+ 
+BTW:  It would be great to have ZOOM in and OUT but this is not provided for. Either we go into the C codes to modify and add on this feature or expand the data collection part so that we expand the datasets.  
 
-Defining BATCHes is like the number of "loops" the training will run through x number of images.  In the past, given the time in class or at home, I would think 100 is more than sufficient.  But there is NO detection =)  This leads to a very important concept of “ART vs SCIENCE” in Machine Learning.  Those who don’t see GRAPHs, will tell you it’s ART and a trial and error.  But machines and computers are not emotional or sensitive objects.  They work based on an algorithm.  Here after reading, you will see Average LOSS for each batch,  
+Defining **BATCHes** is like the number of "loops" the training will run through x number of images.  In the past, given the time in class or at home, I would think 100 is more than sufficient.  But there is NO detection =)  This leads to a very important concept of “ART vs SCIENCE” in Machine Learning.  Those who don’t see GRAPHs, will tell you it’s ART and a trial and error.  But machines and computers are not emotional or sensitive objects.  They work based on an algorithm.  Here after reading, you will see Average LOSS for each batch,  
 
 I originally tried only 200 batches.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, the loss is in the 2-3000s.  Ie. If you take the weights and predict an image, chances are you predict nothing =)
 Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen.  
@@ -71,17 +75,25 @@ So **WHERE** DO YOU WANT this training to happen?
 
 To recap, Training is letting the software adjust the weights of the CNN model through batches of passing through labelled images so that after many rounds, the CNN model has a nicely setup weights on each layer such that if you feed it a new image, it can tell if it detects the object or not.  In my last training, I ran off my 4 CPU laptop, started at 9 pm and it ended at 2 am.  So, if the system crashed, you come back and restart the training cycle.  The moment of truth comes only when you pass this “pre-trained” weights with predicting a new image.
 
-This brings to the next IMPORTANT topic called [**GOOGLE COLAB**][https://colab.research.google.com/] and your GOOGLE DRIVE.  Google has graciously given “free” CPU/GPU/TPU for training, provided you know how to use them.  The lowest speed is Computer Processing Unit (CPU), followed by Graphical Processing Unit (GPU) and finally the top in class is the Tensor Processing Unit (TPU).  GPU are the likes of Graphics cards that are mainly used by NVIDIA to speed up image processing and they in turn found a use in the AI world.  
+This brings to the next IMPORTANT topic called [**GOOGLE COLAB**][https://colab.research.google.com/] and your GOOGLE DRIVE.  
 
-Engineers who love software, but can’t typically do hardware and vice versa.  The gist of this is this – Training of these models require alot of Processing power and the more you have ( that you need not pay for ) the quicker it is to have the work (training) done.  So, learning how to use GOOGLE COLAB is very useful.  BUT, **NOT** everything of AI is PYTHON. It's like an UBUNTU environment on the cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  
+![colab](/assets/images/colab.jpg) 
 
-A skillset of moving around COLAB is important and mounting your drive for storage of codes.  Otherwise, everything is lost in the session after you log off.  The quick summary is that I set up the codes on my laptop UBUNTU 19.4 environment, ZIP the files and upload to my GOOGLE drive, then start a COLAB session and mount my google drive to “!unzip” the file in a jupyter Notebook. 
+Google has graciously given everyone “free” CPU/GPU/TPU for training, provided you know how to use them.  The lowest speed is Computer Processing Unit (CPU), followed by Graphical Processing Unit (GPU) and finally the top in class is the Tensor Processing Unit (TPU).  GPU started from Graphics cards used in gaming for rendering, a famous vendor being NVIDIA, and they in turn found another use of GPU in the AI world. TPU are specific to Google COLAB and the Google CLOUD computing.  Actually, I did not use TPU here but TPU can be activated via a few lines of codes when training Tensorflow using PYTHON.  
 
-Attending the SGINNOVATE course forced me to learn how to do this effectively.  And doing the exercise helps me to focus on the whims of this environment.  
+Engineers who love software, but can’t typically do hardware and vice versa.  The gist of this is this – Training of these models require alot of Processing power and the more you have ( that you need not pay for ) the quicker it is to have the work (training) done.  So, learning how to use GOOGLE COLAB is very useful.  BUT, **NOT** everything on AI is PYTHON. Colab is like an UBUNTU environment on the cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  So, an understanding of how to move around, mount your google drive and get the notebook running is important.   Otherwise, everything is lost after you log off as the session data is not saved.  
 
-## Everything in life is about the results ( while you are tricked into thinking it’s the process that matters )
+The quick summary is that I set up the codes on my laptop UBUNTU 19.04 environment, ZIP up the files and upload to my GOOGLE drive, then start a COLAB session, mount my google drive to “!unzip” the file in a jupyter Notebook. The work withe the session.  The next time I come back in to train, all these setup is done rather than a reinstall of the software each session.
 
-Repeatable success can only be achieved through disciplined approach. Whether its coding or Data Science.  The keeping of a LOGbook and “Documenting your code” in a jupyter notebook helps remind yourself 3 months after you come back.  Here’s a code sniplet of the notebook showing an image predict on s25.jpg.  A high level of confidence shows that the recognition is perhaps more sure.  Adding a THRESH variable can make the system ignore any prediction less than 0.x% 
+Attending the SGINNOVATE Red Dragon's course forced me to learn how to use this.  And doing the exercise helps me to focus on the whims of this environment.   
+
+## Everything in life is about the results ( while you are tricked into thinking it’s the process that matters, it's like saying to your boss, I worked very hard but no sales )
+
+<div class="alert alert-block alert-danger">
+Repeatable success can only be achieved through discipline
+</div>
+
+Whether it's coding or Data Science.  The keeping of a LOGbook and “Documenting your code” in a jupyter notebook helps remind yourself 3 months after you come back.  Here’s a code sniplet of the notebook showing an image predict on s25.jpg.  A high level of confidence shows that the recognition is perhaps more sure.  Adding a THRESH variable can make the system ignore any prediction less than 0.x% 
 
 ![Prediction](/assets/images/s1.png)
 
