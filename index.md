@@ -15,7 +15,9 @@ So, do l really need a couple of hundreds or at least a thousand images for cust
 
 ## The Image Dataset
 
-I selected images from google search and selected clear in perspective PMDs.  However, my scope did not include e-scooters nor MONO-wheel type of PMDs.  I realized after the training, some scenes are detected with PMD but as they fade further away, the bounding boxes disappear.  This implies that the collection of images could be further enhanced by perhaps taking a video and extracting out zooming out frames of a PMD in motion.  
+I selected images from google search and selected pictures where the PMD is large and clear. So for google images that are posted either in an article or taken by friends, surely they don't want a PMD so small in the background and neither are they good for selling the PMDs.  This selection of images also meant that later on, when you look at the detection of images, as the PMD fades away from the viewer, it becomes unrecognised.  And this is so, because the images selected don't have this blurred smaller PMDs in the distance.  These can be complemented with own data that one can go out to collect.
+
+My scope did not include e-scooters nor MONO-wheel type of PMDs.  I realized after the training, some scenes are detected with PMD but as they fade further away, the bounding boxes disappear.  This implies that the collection of images could be further enhanced by perhaps taking a video and extracting out zooming out frames of a PMD in motion.  
 
 Labelling is a simple but tedious job, but there are many tools available to help.  The one I chose was [VOTT](https://github.com/microsoft/VoTT).  
 
@@ -27,7 +29,7 @@ By sheer randomness, I decided on 74 images after discarding some.  By reading u
  
 ![Image File](/assets/images/DATA.jpg)
 
-## Yolo-ing around
+## YOLO-ing around
 
 You only Look Once [YOLO](https://pjreddie.com/media/files/papers/YOLOv3.pdf) is a nice and fast model for detecting images and developed by Joseph Redmon and Ali Frahadi of University of Washington.  Mathematics aside, there are many implementations from C to Python (Tensorflow) and Pytorch.  I chose [AlexyAB Darknet fork](https://github.com/AlexeyAB/darknet) which provided an upgraded version from PKREDDIE.   
 
