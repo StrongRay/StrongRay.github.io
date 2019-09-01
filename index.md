@@ -62,7 +62,11 @@ So, you can see in the above graph, the average loss at 270 batches is still rea
 ![Graph-2](/assets/images/BatchNo-Loss-3.jpg) 
 
 Here's the difference between the 2 weights file, one trained till 1000 batches and the other till 2000 batches
-There are slight differences, but note the one with 2000 will detect abit more images.  Those not detected will still be true for both as the dataset doesn't include PMDs of those models.
+There are slight differences, but note the one with 2000 will detect abit more images.  Those not detected will still be true for both as the dataset doesn't include PMDs of those models.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen. 
+ 
+![Graph](/assets/images/Batch.jpg)
+
+So my TEST strategy before processing through the ST video is to capture certain frames and do a single IMAGE prediction based on sample images extracted from the videos that are not part of the dataset.  For if these are not predicted, there is a likely chance that the VIDEO fed through the trained model will not predict.  
 
 {% include youtubePlayer.html id="DcA5VkTIP4s" %}
 
@@ -73,10 +77,6 @@ Before you go about training endlessly, there is a Deep Learning concept called 
 Below is an image from a VIDEO (mp4) that I sourced from Straits Times as a source of frames that I did not expose the model to train for.  This is where the **MAGIC of Deep Learning** begins.  
 
 The ability of Machine Learning model to predict something other than what it is trained for.  This is also termed as **SUPERVISED** Learning.  The Supervision comes from a human (me) associating images with bounding boxes and labelling them to TELL the computer to recognize the item as in this case, a PMD.    Without this “supervision”, how will the computer ever know what you mean by a PMD.  There is also UNSUPERVISED learning which is another story all together.  But unlike pure programming, where you do matching of images, the automatic weights adjustment is done for you back and forth.  Which also means that DEBUGGING process is quite difficult.  You have to play around and understand the basis of how such programs work and learn to tune it such that it picks the best strategy to give you the greatest accuracy.  The transportable skills here is in knowing why certain images are not recognised and being able to explain.  Only when one can explain, can only tune the model or collect more data images to compliment the model.  With ONE BIG ASSUMPTION - that the people in GOOGLE tensorflow or any model got their internal codes correct, much like if 1+1 is not = 2 at the Microsoft OS level, surely no amount of Application software can get this right.
-
-![Graph](/assets/images/Batch.jpg)
-
-So my TEST strategy before processing through the ST video is to capture certain frames and do a single IMAGE prediction based on sample images extracted from the videos that are not part of the dataset.  For if these are not predicted, there is a likely chance that the VIDEO fed through the trained model will not predict.  
 
 So **WHERE** DO YOU WANT this training to happen?
 
