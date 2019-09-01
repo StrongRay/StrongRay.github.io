@@ -40,9 +40,7 @@ It would be great to have ZOOM in and OUT as another such **data augmentation**,
 
 BATCH is about the number of “rounds” the training will run through x number of images.  In the past, given the time in class or at home, I would think 100 is more than sufficient.  But there is NO detection =)  This leads to a very important concept of “ART vs SCIENCE” in Machine Learning.  Those who don’t see GRAPHs, will tell you it’s ART and a trial and error.  But machines and computers are not emotional or sensitive objects.  They work based on an algorithm.  Here after reading, you will see Average LOSS for each batch,  
 
-![Graph](/assets/images/Graph.jpg)
-
-200 is what I originally tried.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, the loss is in the 2-3000s.  Ie. If you take the weights and predict an image, chances are you predict nothing =)
+I originally tried only 200 batches.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, the loss is in the 2-3000s.  Ie. If you take the weights and predict an image, chances are you predict nothing =)
 Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen.  
 
 ![Graph-1](/assets/images/BatchNo-Loss-2.jpg) ![Graph-2](/assets/images/BatchNo-Loss-3.jpg) 
