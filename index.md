@@ -105,4 +105,4 @@ Whether it's coding or Data Science.  The keeping of a LOGbook and “Documentin
 The following is the processed video
 {% include youtubePlayer.html id="UXStERpkuQo" %}
 
-I hope you enjoyed my article. Do give me feedback to correct my perspectives. It's always good to learn, unlearn and relearn.
+I hope you enjoyed my article. Do give me email me feedback (tankenghee@hotmail.com) to correct my perspectives. It's always good to learn, unlearn and relearn.
