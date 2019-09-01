@@ -1,4 +1,4 @@
-# HOW YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
+# HOW DO YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
 
 Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 fps frame per second is totally useless in the real world, neither is 15 fps good enough.  So, speed and accuracy are both important parameters in the real world. 
 
@@ -78,7 +78,7 @@ Below is an image from a VIDEO (mp4) that I sourced from Straits Times as a sour
 
 The ability of Machine Learning model to predict something other than what it is trained for.  This is also termed as **SUPERVISED** Learning.  The Supervision comes from a human (me) associating images with bounding boxes and labelling them to TELL the computer to recognize the item as in this case, a PMD.    Without this “supervision”, how will the computer ever know what you mean by a PMD.  There is also UNSUPERVISED learning which is another story all together.  But unlike pure programming, where you do matching of images, the automatic weights adjustment is done for you back and forth.  Which also means that DEBUGGING process is quite difficult.  You have to play around and understand the basis of how such programs work and learn to tune it such that it picks the best strategy to give you the greatest accuracy.  The transportable skills here is in knowing why certain images are not recognised and being able to explain.  Only when one can explain, can only tune the model or collect more data images to compliment the model.  With ONE BIG ASSUMPTION - that the people in GOOGLE tensorflow or any model got their internal codes correct, much like if 1+1 is not = 2 at the Microsoft OS level, surely no amount of Application software can get this right.
 
-So **WHERE** DO YOU WANT this training to happen?
+**WHERE** DO YOU WANT this training to happen?
 
 To recap, Training is letting the software adjust the weights of the CNN model through batches of passing through labelled images so that after many rounds, the CNN model has a nicely setup weights on each layer such that if you feed it a new image, it can tell if it detects the object or not.  In my last training, I ran off my 4 CPU laptop, started at 9 pm and it ended at 2 am.  So, if the system crashed, you come back and restart the training cycle.  The moment of truth comes only when you pass this “pre-trained” weights with predicting a new image.
 
