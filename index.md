@@ -1,8 +1,10 @@
 # HOW DO YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
 
-Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  However, a 4 fps (frame per second) is totally useless in the real world, neither is 15 fps good enough.  So, speed and accuracy are both important parameters in the real world. 
+Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  
 
-I wanted to see if I can do some custom deep learning to “program” a model to recognize an object.  Obviously, there is no thrill in doing what every course out there is doing -  “Cats and Dogs” thing or “Types of Flowers” thing.
+So the key consideration is both speed of prediction and accuracy of prediction.  If a model can only predict too slowly resulting in a 4-15 fps (frame per second), it is totally useless in the real world.  If a model can predict fast but cannot be accurate, it is also useless. 
+
+What I wanted to see, is whether I can do some custom deep learning to “program” a model to recognize an object.  Obviously, there is no thrill in doing what every course out there is doing -  “Cats and Dogs” thing or “Types of Flowers” thingie.
 
 Having just attended [SGINNOVATE](https://sginnovate.com/events/AI) Red Dragon’s Advanced Computer Vision course at BASH BLK 71 last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
 
@@ -39,11 +41,9 @@ I started with "darknet 53" pre trained weights and then moved on to "Yolov3 Tin
 
 ## It’s all about Hyper parameters tuning 
 
-Hyper parameter is like META DATA to DATA - Data about Data.  Hyper parameter sounds more classier and mystical. So, it's one of basic 101 questions you can ask an AI engineer/developer/scientist, explain what is Hyper Parameter and Transfer Learning =) 
+**Hyper parameter** is specic parameters that a training model takes to control the training.  It's like BATCH NUMBERS, NUMBER OF EPOCHS, etc.  There are many ways to code in these parameters.  Whether its imbedded into the python codes for tensorflow training, or like in this case YOLO, they extract out these parameters nicely into a CONFIG file called .CFG.  It is here that you see the parameters being defined.   So, it's one of basic 101 questions you can ask an AI engineer/developer/scientist, explain what is Hyper Parameter and Transfer Learning =) Like a level 0 type of question. =)
 
-So the control of training needs to read off a CONFIGURATION FILE and this CONFIGURATION file contains parameters that one can easily tune, instead of hard coding into the program to change, for example - the number of batches.
-
-“Programming” in DEEP LEARNING is nothing more than fine tuning the “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, **DATA AUGMENTATION** is a concept where the image data can being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images will increases from the base set of 74 that you have collected and labelled. This AUTO labelling is what makes life simpler.  Once the prediction is done, the other mundane non-AI stuff can come in like to store these photo segments, additional analysis using OpenCV or other application specific stuff like inserting into a database etc. 
+“Programming” in DEEP LEARNING is nothing more than fine tuning these “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, **DATA AUGMENTATION** is a concept where the image data can being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images will increases from the base set of 74 that you have collected and labelled. This AUTO labelling is what makes life simpler.  Once the prediction is done, the other mundane non-AI stuff can come in like to store these photo segments, additional analysis using OpenCV or other application specific stuff like inserting into a database etc. 
 
 “Setting up” the data directory structure is the next important thing.  Those developers whose's desktop looked like a big mess of document ICONS will die (metaphorically speaking) here.  Reason being, discipline in knowing where to put what gives you a reflection of "self discipline".  Where to place the config files and data images and labels require a one time definition.  The fastest way is to get just one model right and then you can build on the same model.  For me, it’s finding that ONE CLASS object detection repro is my "hello-world"
  
@@ -112,3 +112,5 @@ The following is the processed video
 {% include youtubePlayer.html id="UXStERpkuQo" %}
 
 I hope you enjoyed my article. Do give me email me feedback (tankenghee@hotmail.com) to correct my perspectives. It's always good to learn, unlearn and relearn.
+
+PS: I think I should try the YOLOv3 model and see how it defers this YOLOv3 Tiny.
