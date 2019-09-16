@@ -1,3 +1,7 @@
+# BUILDING Tensorflow 2.0 RC1 from SOURCE
+
+Documented my [build from source](https://github.com/StrongRay/Tensorflow2.0rc1/blob/master/README.md)
+
 # HOW DO YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
 
 Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  
