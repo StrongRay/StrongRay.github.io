@@ -1,6 +1,6 @@
 # BUILDING Tensorflow 2.0 RC1 from SOURCE
 
-Documented my [build from source](https://github.com/StrongRay/Tensorflow2.0rc1/blob/master/README.md)
+Tensorflow 2.0 RC 1 was released last week (week of Sept 9 2019).  Here's my documentation of my [build from source](https://github.com/StrongRay/Tensorflow2.0rc1/blob/master/README.md)
 
 # HOW DO YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
 
