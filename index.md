@@ -1,120 +1,212 @@
-# BUILDING Tensorflow 2.0 RC1 from SOURCE
+# NVIDIA-Jetson-Xavier-NX
+Unboxing the NVIDIA Xavier NX 
 
-Tensorflow 2.0 RC 1 was released last week (week of Sept 9 2019).  Here's my documentation of my [build from source](https://github.com/StrongRay/Tensorflow2.0rc1/blob/master/README.md)
+https://www.nvidia.com/en-sg/autonomous-machines/embedded-systems/jetson-xavier-nx/
 
-# HOW DO YOU TELL THE COMPUTER TO RECOGNISE AN E-SCOOTER ?
+Got hold of a Xavier NX from SEEED, flew over from SZ to SG in 7 days.
+Here's what this IOT super-charged "PI" can do.  It's simply amazing.  I complied codes and do concurrent tasks and the system is stable.
+I can also toggle the use of CORES and wattage.  More importantly, got to download a few stuff. such as jtop.
 
-Object detection is the ability for the computer to recognize the image as if it’s recognized by the human eye.  This is Computer Vision 101 and the basis for Autonomous Vehicles and other detection like X-Rays, production line, Security Monitoring, etc.  
+# What to install 1st
 
-So the key consideration is both speed of prediction and accuracy of prediction.  If a model can only predict too slowly resulting in a 4-15 fps (frame per second), it is totally useless in the real world.  If a model can predict fast but cannot be accurate, it is also useless. 
+## jtop
 
-What I wanted to see, is whether I can do some custom deep learning to “program” a model to recognize an object.  Obviously, there is no thrill in doing what every course out there is doing -  “Cats and Dogs” thing or “Types of Flowers” thingie.
+jtop gives you the needed view of what is running in the background.  The raw version is top. So, this is a custom top.
+Here are the commands
 
-Having just attended [SGINNOVATE](https://sginnovate.com/events/AI) Red Dragon’s Advanced Computer Vision course at BASH BLK 71 last week, I thought (in a Singapore context) Personal Mobile Devices (PMD) might be a nice challenge given that the COCO dataset or IMAGENET doesn’t have PMDs in their dataset. 
+```
+git clone https://github.com/rbonghi/jetson_stats.git
+sudo apt-get install python3-pip
+sudo -H pip3 install -U jetson-stats
 
-So, do l really need a couple of hundreds or at least a thousand images for custom training ? So the key questions for the exploration are as follows -
+```
+## DeepStream 5.0 Preview
 
-1.	Can a custom object be detected using 74 labelled images ?
-2.	How many training batches is sufficient ?
-3.	What model can one use to train ?
-4.	Where can this be best trained ?
+Deepstream toolkit allows you to natively develop Computer vision codes leveraging on the hardware. 
 
-## The Image Dataset
+```
+sudo dkpg -i deepstream-5.0_5.0.0-1_arm64.deb 
+cd /opt/nvidia/deepstream/deepstream
+tar xf ~/Downloads/deepstream_python_v0.9.tbz2 -C sources
+```
 
-I selected images from google search and selected pictures where the PMD is large and clear. So for google images that are posted either in an article or taken by friends, surely they don't want a PMD so small in the background and neither are they good for selling the PMDs.  This selection of images also meant that later on, when you look at the detection of images, as the PMD fades away from the viewer, it becomes unrecognised.  And this is so, because the images selected don't have this blurred smaller PMDs in the distance.  These can be complemented with own data that one can go out to collect.
+## Install Visual Code
 
-My scope did not include e-scooters nor MONO-wheel type of PMDs.  I realized after the training, some scenes are detected with PMD but as they fade further away, the bounding boxes disappear.  This implies that the collection of images could be further enhanced by perhaps taking a video and extracting out zooming out frames of a PMD in motion.  
+As an IDE, its abit better than ATOM but ATOM is more colourful.  Still, with this, you can test codes easier and supposingly debugging. But appeared i needed curl
 
-Labelling is a simple but tedious job, but there are many tools available to help.  The one I chose was [VOTT](https://github.com/microsoft/VoTT).  
 
-![Image File](/assets/images/VOIT.jpg)
+```
+sudo apt-get install curl
+. <( wget -O - https://code.headmelted.com/installers/apt.sh )
+sudo apt-get install libcanberra-gtk-module 
+sudo apt-get install v4l-utils
+cd /opt/nvidia/deepstream/deepstream/samples
+deepstream-app -c ./configs/deepstream-app/source4_1080p_dec_infer-resnet_tracker_sgie_tiled_display_int8.txt
+```
+if you needed more stuff, i think you need to compile correctly to run
+```
+deepstream-app -c ./configs/tlt_pretrained_models/deepstream_app_source1_dashcamnet_vehiclemakenet_vehicletypenet.txt
+```
 
-Perhaps in future, such a tool can take a video and try to auto generate bounding boxes if we predefine the object on one frame.  Still, the idea is not about being perfect, but to take this through end to end.  
+## Install kazam
 
-By sheer randomness, I decided on 74 images after discarding some.  By reading up on some posts, some say they need 400 images or even a thousand.  So the hypothesis is “Can a custom object model be created based on 74 images ?” And how accurate is enough ?  From a zero detection to possibly some detection is a good start. 
- 
-![Image File](/assets/images/DATA.jpg)
+Kazam is your video capture for the screen. Useful for documentation
+```
+sudo apt install kazam
+```
 
-## YOLO-ing around
+# First Impression
 
-You only Look Once [YOLO](https://pjreddie.com/media/files/papers/YOLOv3.pdf) is a nice and fast model for detecting images and developed by Joseph Redmon and Ali Frahadi of University of Washington.  Mathematics aside, there are many implementations from C to Python (Tensorflow) and Pytorch.  I chose [AlexyAB Darknet fork](https://github.com/AlexeyAB/darknet) which provided an upgraded version from PKREDDIE.   
+Hunt for jTop and install to see the various stuff running.  It's like top except tailored for NVIDIA
 
-So, the GIST is the concept of [Transfer Learning](https://machinelearningmastery.com/transfer-learning-for-deep-learning/).  Select a trained weights from one of the model and then use it to train your dataset.  So, this is supposedly better and faster than training from scratch.  The codes FREEZE up the earlier Convoluted Neural Networks (CNN) layers and let the later layers open for data propogation and back propogation.  
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/jTop.png)
 
-I started with "darknet 53" pre trained weights and then moved on to "Yolov3 Tiny".  Reason being, the footprint of a Yolov3 Tiny is the smallest and hence, it should technically be faster to train but perhaps less accurate as it is less complex than the full Yolov3.  
+Not going to write alot, but here's some videos that I captured to show the power of this device
+Deepstream 5 is not pre packaged with the intial load.  You can just go hunt and do some git clone and compliation.
 
-## It’s all about Hyper parameters tuning 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=tFOx3nSJKW8" target="_blank">
+  <img src="http://img.youtube.com/vi/tFOx3nSJKW8/0.jpg" alt="Deep Stream v5 sample app" width="640" height="480" border="0" /></a>
 
-**Hyper parameter** is specic parameters that a training model takes to control the training.  It's like BATCH NUMBERS, NUMBER OF EPOCHS, etc.  There are many ways to code in these parameters.  Whether its imbedded into the python codes for tensorflow training, or like in this case YOLO, they extract out these parameters nicely into a CONFIG file called .CFG.  It is here that you see the parameters being defined.   So, it's one of basic 101 questions you can ask an AI engineer/developer/scientist, explain what is Hyper Parameter and Transfer Learning =) Like a level 0 type of question. =)
+Once, you get the compliation right, you can run the various kinds of application from the samples
 
-“Programming” in DEEP LEARNING is nothing more than fine tuning these “parameters” of the CFG file.  These files layout the different layers and in particular, it offers a lot of detailed complex stuff that would otherwise be tedious to code.  In particular, **DATA AUGMENTATION** is a concept where the image data can being randomly treated with HUE, etc to bring about a slightly different image for training.  Hence, the total number of images will increases from the base set of 74 that you have collected and labelled. This AUTO labelling is what makes life simpler.  Once the prediction is done, the other mundane non-AI stuff can come in like to store these photo segments, additional analysis using OpenCV or other application specific stuff like inserting into a database etc. 
+This second sample shows object detection
 
-“Setting up” the data directory structure is the next important thing.  Those developers whose's desktop looked like a big mess of document ICONS will die (metaphorically speaking) here.  Reason being, discipline in knowing where to put what gives you a reflection of "self discipline".  Where to place the config files and data images and labels require a one time definition.  The fastest way is to get just one model right and then you can build on the same model.  For me, it’s finding that ONE CLASS object detection repro is my "hello-world"
- 
-BTW:  It would be great to have ZOOM in and OUT but this is not provided for. Either we go into the C codes to modify and add on this feature or expand the data collection part so that we expand the datasets.  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=q2VBGvSnWl4" target="_blank">
+  <img src="http://img.youtube.com/vi/q2VBGvSnWl4/0.jpg" alt="Deep Stream v5 sample app" width="640" height="480" border="0" /></a>
+  
+# OPENCV and Camera
 
-Defining **BATCHes** is like the number of "loops" the training will run through x number of images.  In the past, given the time in class or at home, I would think 100 is more than sufficient.  But there is NO detection =)  This leads to a very important concept of “ART vs SCIENCE” in Machine Learning.  Those who don’t see GRAPHs, will tell you it’s ART and a trial and error.  But machines and computers are not emotional or sensitive objects.  They work based on an algorithm.  Here after reading, you will see Average LOSS for each batch,  
+This 3rd item is to test out my Pi camera and doing some OpenCV exploration.  I wanted to find out the response time and how easy it is.   Will expand on the details next update. 
 
-I originally tried only 200 batches.  I later moved to 2000.  So, how does one interpret this graph ? If you do somewhere less than 25 batches, its useless ! Ie. If you take the model and predict an image, chances are you predict nothing =) and in the past I wondered WHY.
+Paul McWhorter has some very nice videos on OpenCV masking and on Nano.  I brought in the codes, made some modifications to detect the BLUE marker.  Got out my servos but did not do the coding to move the motors when the item moves.  That should be exciting too.
 
-Now this graph makes a lot more importance as you hit < 1 loss in the 0.xxx as low we possible.  You can see the results of training here.  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=QBlN-mBAQ60" target="_blank">
+  <img src="http://img.youtube.com/vi/QBlN-mBAQ60/0.jpg" alt="Deep Stream v5 sample app" width="640" height="480" border="0" /></a>
 
-![Graph-1](/assets/images/BatchNo-Loss-2.jpg) 
+# YOLO V4
 
-So, you can see in the above graph, the average loss at 270 batches is still really quite BAD.  You need to bring the average loss down to < 1 at least.
+You Only Look Once (YOLO) is a fast library for Computer Vision.
 
-![Graph-2](/assets/images/BatchNo-Loss-3.jpg) 
+The final part is actually my favourite, using YOLO v4 https://github.com/AlexeyAB/darknet
+I can easily compile without much modification.  The performance is AMAZING.
 
-Here's the difference between the 2 weights file, one trained till 1000 batches and the other till 2000 batches
-There are slight differences, but note the one with 2000 will detect abit more images.  Those not detected will still be true for both as the dataset doesn't include PMDs of those models.  When I run only 1000 batches, the PMD on the left is not detected.  But when I ran at 2000 batches, the same PMD is seen. 
- 
-![Graph](/assets/images/Batch.jpg)
+However, you will need to do the following changes to your
+```
+git clone https://github.com/AlexeyAB/darknet.git
+```
+go install nano [editor for quick editing of any text file]
+then go add this to your ~/.bashrc file
+Basically, when you do a make, it expects to find opencv4.pc and the parameter **PKG_CONFIG_PATH**  must be updated with the following
+```
+export PKG_CONFIG_PATH='/usr/lib/aarch64-linux-gnu/pkgconfig'
+```
+Also, nvcc will hit an error. Do a find to locate where the nvcc is installed and add to the bashrc.
+```
+export PATH=/usr/local/cuda-10.2/bin:$PATH
+```
+Once done, you can follow the https://github.com/AlexeyAB/darknet to test out the detector
+Do make changes to the Makefile to set OPENCV and other GPU stuff.  And remember to download your weights via wget ..
 
-So my TEST strategy before processing through the ST video is to capture certain frames and do a single IMAGE prediction based on sample images extracted from the videos that are not part of the dataset.  For if these are not predicted, there is a likely chance that the VIDEO fed through the trained model will not predict.  
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=L13paMq-cXU" target="_blank">
+  <img src="http://img.youtube.com/vi/L13paMq-cXU/0.jpg" alt="Deep Stream v5 sample app" width="640" height="480" border="0" /></a>
 
-{% include youtubePlayer.html id="DcA5VkTIP4s" %}
+Given I have done this on my UBUNTU laptop with 2 cores, my NANO and now this XAVIER, definitely no drop of speed and continuously processing the video file.
 
-Before you go about training endlessly, there is a Deep Learning concept called **UNDERFITTING** and **OVERFITTING** during training.  
+Enjoy! .. GTC 2020 was like May 15, 16 days later, I am able to see this and from Singapore. Without much training.  Perhaps, my unix is abit rusty. But was able to move my 256GB MicroSD card and salvage a number of pieces of hardware from my tool box.
 
-**Underfitting** happens when after you trained your model, your model still **CANNOT** detect anything that you want to detect, ie. The weights are not adjusted in each CNN layer such that they can identify any the features.  Likely, the training batches is too little and/or the selected images are not varied enough.   **Overfitting** is the other extreme - the model can **ONLY** detect those from the training and validation dataset and no detection for any other images that the model has never seen before.  Both models are quite useless.  The best model is to train until underfitting is the least and at the inflexion point before it becomes overfitted.  
+# Mask or No Mask
 
-This is where the **MAGIC of Deep Learning** begins.  
+Tensorflow 2.1 doesn't come prebuilt on NX. However, it is easy to install.  I wanted to see how it reacts to both Training using GPU as well as how easy it is to add other stuff besides Tensorflow like PyTorch.  There were two explorations and below showed one using Torch and TorchVision (which is quite challenging to get it running on Xavier). Even so, the speed was too slow.
 
-The ability of Machine Learning model to predict something other than what it is trained for.  This is also termed as **SUPERVISED** Learning.  The Supervision comes from a human (me) associating images with bounding boxes and labelling them to TELL the computer to recognize the item as in this case, a PMD.    Without this “supervision”, how will the computer ever know what you mean by a PMD.  There is also UNSUPERVISED learning which is another story all together.  But unlike pure programming, where you do matching of images, the automatic weights adjustment is done for you back and forth.  Which also means that DEBUGGING process is quite difficult.  You have to play around and understand the basis of how such programs work and learn to tune it such that it picks the best strategy to give you the greatest accuracy.  The transportable skills here is in knowing why certain images are not recognised and being able to explain.  Only when one can explain, can only tune the model or collect more data images to compliment the model.  With **ONE BIG ASSUMPTION** - that the people at GOOGLE BRAIN, tensorflow development got their internal codes correct, much like if 1+1 is not = 2 at the Microsoft OS level, surely no amount of Application software can get this right.
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Face-4-label.png "Multi Face Detect")
 
-**WHERE** DO YOU WANT this training to happen?
+So I hunted down a code set that purely uses Tensorflow.  Surprisingly, with some changes to CV2, I managed to get this working off the attached camera. Will put some links here later to explain what I did. 
 
-To recap, Training is letting the software adjust the weights of the CNN model through batches of passing through labelled images so that after many rounds, the CNN model has a nicely setup weights on each layer such that if you feed it a new image, it can tell if it detects the object or not.  In my last training, I ran off my 4 CPU laptop, started at 9 pm and it ended at 2 am.  So, if the system crashed, you come back and restart the training cycle.  The moment of truth comes only when you pass this “pre-trained” weights with predicting a new image.
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=EnPb01ldcHQ" target="_blank">
+  <img src="http://img.youtube.com/vi/EnPb01ldcHQ/0.jpg" alt="Mask or No Mask" width="640" height="480" border="0" /></a>
 
-This brings to the next IMPORTANT topic called [COLAB](https://colab.research.google.com/) and your GOOGLE DRIVE.  
+# Pytorch LIGHTNING ..
 
-![colab](/assets/images/colab.jpg) 
+https://pytorch-lightning.readthedocs.io/en/latest/introduction_guide.html
 
-Google has graciously given everyone “free” CPU/GPU/TPU for training, provided you know how to use them.  The lowest speed is Computer Processing Unit (CPU), followed by Graphical Processing Unit (GPU) and finally the top in class is the Tensor Processing Unit (TPU).  GPU started from Graphics cards used in gaming for rendering, a famous vendor being NVIDIA, and they in turn found another use of GPU in the AI world. TPU are specific to Google COLAB and the Google CLOUD computing.  Actually, I did not use TPU here but TPU can be activated via a few lines of codes when training Tensorflow using PYTHON.  
+In the light of trying more stuff out on my NVIDIA Xavier NX, I downloaded a set of Pytorch codes and also gotten the Real World Mask Data from China - https://github.com/X-zhangyang/Real-World-Masked-Face-Dataset
 
-Engineers who love software, but can’t typically do hardware and vice versa.  The gist of this is this – Training of these models require lots of Processing power and the more power you have ( that you need not pay for ) the quicker it is to have the work (training) done.  After you are done, release it back to the pool ( but as spiderman says "with power, comes great responsibilty" )
+Hit an initial problem and I thought i HAD to go CONDA. Yet, twigged around and found that I could install Pytorch Lightning.  Here's the screen shots of the training and the tensorboard graphs
 
-So, learning how to use/exploit GOOGLE COLAB is very useful.  But there is no free lunch. What is free is normally not so 100% reliable.  Once in awhile, you get disconnected and you just restart. Hopefully, you have checkpoints in betweens to carry on from where you left off.  Or hope that its so fast that before you get disconnected, all the work is done.
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Training-1.png)
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Train-TensorBoard.png)
 
-BUT, **NOT** everything on AI is PYTHON. 
+So overfitting really occurred at EPOCH 6.  But this is not the point.
+The power is this unit.  I am using this device to train ( which would otherwise have to be done via GOOGLE CLOUD or AMAZON and it also means, you end up paying for the time you spend training on CLOUD )
 
-Colab is the [Jupyter](https://jupyter.org/) Notebook frontend to an UBUNTU environment on the Google cloud.  Actually a Mac is a unix box underneath too, that is another story altogether.  So, an understanding of how to move around, mount your google drive and get the notebook running is important.   Otherwise, everything is lost after you log off as the session data is not saved.  
+Tested the generated weights against a video feed. It's a two step process, but not efficient. Detect faces 1st, then use faces to detect if there is a mask. Getting CHINESE characters onto CV2 on a Xavier. Can be done but it's an image overlay via PIL.  Here's what you can see:
 
-The quick summary is that I set up the codes on my laptop UBUNTU 19.04 environment, ZIP up the files and upload to my GOOGLE drive, then start a COLAB session, mount my google drive to “!unzip” the file in a jupyter Notebook. The work with the session.  The next time I come back in to train on another day, all these setup is done rather than a reinstall of the software each session.
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=h8g1X5hgSdY" target="_blank">
+  <img src="http://img.youtube.com/vi/h8g1X5hgSdY/0.jpg" alt="20 Hours" width="640" height="480" border="0" /></a>
 
-Attending the SGINNOVATE Red Dragon's course forced me to learn how to use this.  And doing the exercise helps me to focus on the whims of this environment.   
+Reducing the threshold for detecting faces resulted in more 'non-faces' but seemed to pick up more faces.
 
-## Everything in life is about the results ( while you are tricked into thinking it’s the process that matters, it's like saying to your boss, I worked very hard but no sales )
+# MTCNN - aka Face landmarks detection
 
-**Repeatable success is achievable only through discipline**
+One thing leading to another.  Facial Landmarks are a way to detect points of the faces. This is no magic.  So whoever tries to con and tell you his/her company is able to detect emotions and you are going to buy that company for 10s of millions is really dumb.  There is "ready made" software.  But like all software, it challenges the basic.  And I returned back numpy.ndarray to Datacamp =) so, it took me awhile to look at the codes, test out in Python COMMAND prompt.  Key, is not only about reading codes, but to know what to change and how to change.  
 
-Whether it's coding or Data Science.  The keeping of a LOG book and “Documenting your code” in a jupyter notebook helps remind yourself 3 months after you come back.  Here’s a code sniplet of the notebook showing an image predict on s25.jpg.  A high level of confidence shows that the recognition is perhaps more sure.  Adding a THRESH variable can make the system ignore any prediction less than 0.x% 
+1.  So the sample from mtcn-face-extraction [https://github.com/JustinGuese/mtcnn-face-extraction-eyes-mouth-nose-and-speeding-it-up/blob/master/MTCNN%20example.ipynb] doesn't give boundary boxes for Advanced MTCNN.  There is no point seeing number of images detected without looking at the frame.  You will need **facenet_pytorch**
+2.  You will need **mtcnn** for the basic example. Simple stuff always fail like **pip3 install mtcnn** complaining you need python-opencv-4.1. You will need some creative way to bypass the check on python-opencv4 [By the way, building cv2 from source v 4.3 is done easily with a make -j**6** don't forget you have 6 cores to complie ! so I have proven cv2 version 4.3 can work on NVIDIA Jetson Xavier]
+3.  Images Scaling Resize changed to 1 and wola .. boxes fall in place.
+```
+fast_mtcnn = FastMTCNN(
+    stride=4,
+    resize=1,
+    margin=14,
+    factor=0.6,
+    keep_all=True,
+    device=device
+)
+```
+Here's the nice outcome:
 
-![Prediction](/assets/images/s1.png)
+## Basic MTCNN
 
-The following is the processed video
-{% include youtubePlayer.html id="UXStERpkuQo" %}
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Basic-Face-4.png)
 
-I hope you enjoyed my article. Do give me email me feedback (tankenghee@hotmail.com) to correct my perspectives. It's always good to learn, unlearn and relearn.
+## Advanced MTCNN
 
-PS: I think I should try the YOLOv3 model and see how it defers this YOLOv3 Tiny.
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Advanced-Face-4.png)
+
+Alot alot more faces are detected than the initial exploration.  I forgot to mention "Frames per second: **0.197**, faces detected: 18" - 18 faces detected in 0.197 second. WOW! What a piece of hardware. Got to combine this to the mask/no mask and stream it through a video to see the latency. 
+
+Processed more files.  Here's the impressive face detection.
+
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-1-1.png)
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-2.png)
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-3.png)
+![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-4.png)
+
+And the source code:
+
+https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/advance-mtcnn.py
+
+**Learn enough to self correct**
+
+Like AUTOML, with time, software gets easier but no software can automate data prep and one can blindly follow. 
+
+# Quick Learning 
+
+As a learning today, I chanced upon a TED talk by Josh Kaufman (video below) and got really inspired. The gist of the video is to say you can learn anything in 20 hours.  But if you have a foundation, it makes it easier to latch on new skills. 
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=5MgBikgcWnY" target="_blank">
+  <img src="http://img.youtube.com/vi/5MgBikgcWnY/0.jpg" alt="20 Hours" width="640" height="480" border="0" /></a>
+
+The 4 steps to quick Learning are as follows
+
+> 1) Deconstruct any Skill (much like WBS in project management)
+> 2) Learn enough to **self** correct
+> 3) Remove barriers of Practice (eg: distraction and "emotional" rather than "intellectual")
+> 4) Practice at least 20 hours
+
+We don't need 10,000 hours to be an expert.  We just need 20 hours to learn something well enough.  This meant an hour daily for 3 weeks.  As I looked back, I mastered Cross System Product (CSP/AD) which in the 90s was a Mainframe code generator and taught classes on it.  Then, its the same. Focus on something you love and you can be the best. Language changed.  RPA was then ELLAPI in the old days. Syntax might change but the concept remains the same. 
+
+# Afterthoughts:
+
+We drabble into these once awhile, and Harish Pillay (Redhat) once said that he used github to document his instructions on Wireless#SG.   I find it an extremely good advice.  As we wipe out cards or write in notebooks, these instructions are lost and there is no "cloud" version.  So this can be extremely useful for someone either fresh on UBUNTU or on NVIDIA.  I even reference the part of increasing my RAM in my earlier post here for the commands.  So, as this builds, I can slowly evolve  this into a digital engineering logbook.  That discipline is what ENGINEERING students do, keep a log book and document the observations and steps.    And given this is open and 24x7, someone out there might find this useful and my advice is pass it on. Do your own logbook and help others.  The knowledge is open but the beauty is the skill. This is an instance of an object. The FISH and not fishing itself.  To move around, requires more than just this basic knowledge as it involves disciplined mind, interest and above all, many other disciplines like programming and debugging.  
+
