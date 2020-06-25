@@ -118,7 +118,7 @@ Enjoy! .. GTC 2020 was like May 15, 16 days later, I am able to see this and fro
 
 Tensorflow 2.1 doesn't come prebuilt on NX. However, it is easy to install.  I wanted to see how it reacts to both Training using GPU as well as how easy it is to add other stuff besides Tensorflow like PyTorch.  There were two explorations and below showed one using Torch and TorchVision (which is quite challenging to get it running on Xavier). Even so, the speed was too slow.
 
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Face-4-label.png "Multi Face Detect")
+![Image File](/assets/images/Face-4-label.png)
 
 So I hunted down a code set that purely uses Tensorflow.  Surprisingly, with some changes to CV2, I managed to get this working off the attached camera. Will put some links here later to explain what I did. 
 
@@ -167,11 +167,11 @@ Here's the nice outcome:
 
 ## Basic MTCNN
 
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Basic-Face-4.png)
+![Image File](/assets/images/Basic-Face-4.png)
 
 ## Advanced MTCNN
 
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Advanced-Face-4.png)
+![Image File](/assets/images/Advanced-Face-4.png)
 
 Alot alot more faces are detected than the initial exploration.  I forgot to mention "Frames per second: **0.197**, faces detected: 18" - 18 faces detected in 0.197 second. WOW! What a piece of hardware. Got to combine this to the mask/no mask and stream it through a video to see the latency. 
 
