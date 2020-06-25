@@ -133,8 +133,8 @@ In the light of trying more stuff out on my NVIDIA Xavier NX, I downloaded a set
 
 Hit an initial problem and I thought i HAD to go CONDA. Yet, twigged around and found that I could install Pytorch Lightning.  Here's the screen shots of the training and the tensorboard graphs
 
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Training-1.png)
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/Train-TensorBoard.png)
+![Image File](/assets/images/Training-1.png)
+![Image File](/assets/images/Train-TensorBoard.png)
 
 So overfitting really occurred at EPOCH 6.  But this is not the point.
 The power is this unit.  I am using this device to train ( which would otherwise have to be done via GOOGLE CLOUD or AMAZON and it also means, you end up paying for the time you spend training on CLOUD )
