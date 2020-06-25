@@ -177,10 +177,10 @@ Alot alot more faces are detected than the initial exploration.  I forgot to men
 
 Processed more files.  Here's the impressive face detection.
 
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-1-1.png)
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-2.png)
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-3.png)
-![alt text](https://github.com/StrongRay/NVIDIA-Jetson-Xavier-NX/blob/master/crowd-4.png)
+![Image File](/assets/images/crowd-1.png)
+![Image File](/assets/images/crowd-2.png)
+![Image File](/assets/images/crowd-3.png)
+![Image File](/assets/images/crowd-4.png)
 
 And the source code:
 
